@@ -86,7 +86,7 @@ static CachedDir * cached_dir_add_subdir          (CachedDir  *dir,
 static gboolean cached_dir_remove_subdir          (CachedDir  *dir,
                                                    const char *basename);
 
-static void handle_cached_dir_changed (MenuMonitor      *monitor,
+static void handle_cached_dir_changed (/*MenuMonitor      *monitor,*/
 				       MenuMonitorEvent  event,
 				       const char       *path,
 				       CachedDir        *dir);
@@ -98,7 +98,7 @@ static void handle_cached_dir_changed (MenuMonitor      *monitor,
 static CachedDir* dir_cache = NULL;
 
 static void
-clear_cache (CachedDir *dir,
+clear_cache (//CachedDir *dir,
              gpointer  *cache)
 {
   *cache = NULL;
@@ -301,7 +301,7 @@ static CachedDir* cached_dir_lookup(const char* canonical)
   return dir;
 }
 
-static gboolean cached_dir_add_entry(CachedDir* dir, const char* basename, const char* path)
+static gboolean cached_dir_add_entry(CachedDir* dir, /*const char* basename,*/ const char* path)
 {
   DesktopEntry *entry;
 
@@ -334,7 +334,7 @@ static gboolean cached_dir_update_entry(CachedDir* dir, const char* basename, co
       tmp = tmp->next;
     }
 
-  return cached_dir_add_entry (dir, basename, path);
+  return cached_dir_add_entry (dir, /*basename,*/ path);
 }
 
 static gboolean cached_dir_remove_entry(CachedDir* dir, const char* basename)
@@ -493,7 +493,7 @@ cached_dir_queue_monitor_event (CachedDir *dir)
     }
 }
 
-static void handle_cached_dir_changed (MenuMonitor* monitor, MenuMonitorEvent event, const char* path, CachedDir* dir)
+static void handle_cached_dir_changed (/*MenuMonitor* monitor,*/ MenuMonitorEvent event, const char* path, CachedDir* dir)
 {
   gboolean  handled = FALSE;
   char     *basename;
@@ -624,7 +624,7 @@ static gboolean cached_dir_load_entries_recursive(CachedDir* dir, const char* di
       if (g_str_has_suffix (dent->d_name, ".desktop") ||
           g_str_has_suffix (dent->d_name, ".directory"))
         {
-          cached_dir_add_entry (dir, dent->d_name, fullpath->str);
+          cached_dir_add_entry (dir, /*dent->d_name,*/ fullpath->str);
         }
       else /* Try recursing */
         {
