@@ -1119,7 +1119,7 @@ gboolean _entry_directory_list_compare(const EntryDirectoryList* a, const EntryD
   return (al == NULL && bl == NULL);
 }
 
-static gboolean get_all_func(EntryDirectory* ed, DesktopEntry* entry, const char* file_id, DesktopEntrySet* set, gpointer user_data)
+static gboolean get_all_func(EntryDirectory* ed, DesktopEntry* entry, const char* file_id, DesktopEntrySet* set/*, gpointer user_data*/)
 {
   if (ed->is_legacy && !desktop_entry_has_categories (entry))
     {
